@@ -59,6 +59,20 @@
     color: #FFFFFF !important;
 }
 
+/* Fix text contrast in environment section */
+.split-content .text-white-50 {
+    color: var(--dark-color) !important;
+}
+
+.split-content .text-white-50.fw-bold {
+    color: var(--dark-color) !important;
+}
+
+/* Reduce background icon opacity for better text visibility */
+.split-content .opacity-10 {
+    opacity: 0.05 !important;
+}
+
 /* Fix all Bootstrap background classes */
 [data-theme="dark"] .bg-light {
     background: var(--secondary-color) !important;
@@ -948,7 +962,12 @@ body {
     background-color: #5B8ABF;
     transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(108, 155, 207, 0.3);
-    color: white;
+    color: white !important;
+}
+
+.btn-primary:hover *,
+.btn-outline:hover * {
+    color: inherit !important;
 }
 
 .btn-outline {
@@ -1278,12 +1297,12 @@ footer {
 }
 
 .package-card {
-    flex: 1 1 calc(33.333% - 20px);
-    background: var(--surface-color);
+    flex: 1 1 calc(50% - 20px);
+    background: var(--light-color);
     border-radius: 40px;
     padding: 40px;
+    text-align: center;
     transition: var(--transition);
-    border: 1px solid var(--border-color);
     min-width: 300px;
 }
 
@@ -1420,6 +1439,300 @@ footer {
     transition: var(--transition);
 }
 
+/* Fix essential cards text overlap on mobile */
+@media (max-width: 767.98px) {
+    .essential-card.d-flex {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+    
+    .essential-card.d-flex .flex-shrink-0 {
+        margin: 0 auto !important;
+    }
+    
+    /* Fix pricing card tag overlap on mobile */
+    .card .position-absolute[style*="rotate(45deg)"] {
+        top: 35px !important;
+        right: -60px !important;
+        font-size: 10px !important;
+        width: 180px !important;
+    }
+    
+    /* Fix Value of Rest section cards on mobile */
+    .glass-card {
+        padding: 20px !important;
+        margin-bottom: 10px !important;
+        min-height: auto !important;
+        text-align: center !important;
+    }
+    
+    .glass-card h4 {
+        font-size: 1.2rem !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .glass-card p {
+        font-size: 0.75rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Stack cards in single column on mobile */
+    .row.g-3 .col-6 {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Show comparison table header on mobile and tablet */
+    .comparison-header {
+        display: grid !important;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+    
+    .comparison-header > div {
+        padding: 5px !important;
+        text-align: center !important;
+    }
+    
+    .comparison-header > div:first-child {
+        text-align: left !important;
+    }
+}
+
+/* Show comparison table header on tablet */
+@media (max-width: 991.98px) {
+    .comparison-header {
+        display: grid !important;
+    }
+    
+    /* Center Lullaby Lark Promise section cards on mobile and tablet */
+    .trust-item .fs-1 {
+        text-align: center !important;
+        margin: 0 auto 1rem auto !important;
+        display: block !important;
+    }
+    
+    .trust-item h4 {
+        text-align: center !important;
+    }
+    
+    /* Hide consultant card on all devices in about page */
+.about .position-absolute.bottom-0.start-50.translate-middle-x.mb-n4.w-75 {
+    display: none !important;
+}
+
+/* Fix Editor's Choice button alignment on mobile */
+@media (max-width: 767.98px) {
+    .featured-content .d-flex.align-items-center {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        text-align: center !important;
+    }
+    
+    .featured-content .d-flex.align-items-center .btn {
+        width: 100% !important;
+        max-width: 300px !important;
+    }
+}
+
+/* Center button in Not Just Tips Real Solutions section on tablet */
+@media (max-width: 991.98px) and (min-width: 768px) {
+    .col-lg-6.animate-on-scroll .btn {
+        display: block !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+        width: fit-content !important;
+    }
+}
+
+/* Fix Quick Contact Info icon overlapping on mobile */
+@media (max-width: 767.98px) {
+    .contact-section .d-flex.align-items-center.gap-4 {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 20px !important;
+        text-align: left !important;
+    }
+    
+    .contact-section .d-flex.align-items-center .fs-4 {
+        width: 50px !important;
+        height: 50px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .contact-section .d-flex.align-items-center > div {
+        width: 100% !important;
+        padding-left: 65px !important;
+        position: relative !important;
+    }
+}
+
+/* Fix new sleep log button positioning on mobile */
+@media (max-width: 767.98px) {
+    .dashboard-section .d-flex.justify-content-between.align-items-center.gap-3 .btn-new-log {
+        display: block !important;
+        margin: 15px auto 0 !important;
+        text-align: center !important;
+        width: fit-content !important;
+        clear: both !important;
+        margin-top: 10px !important;
+    }
+}
+
+/* Add hover highlighting for Plan Tip of the Day link */
+.stats-card a.text-decoration-none:hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+    transition: all 0.3s ease !important;
+}
+
+.stats-card a.text-decoration-none:hover i {
+    transform: translateX(3px) !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* Center Detailed Sleep Logs heading on mobile */
+@media (max-width: 767.98px) {
+    #logs .d-flex.flex-column.flex-md-row.justify-content-between.align-items-md-center > div:first-child {
+        text-align: center !important;
+    }
+    
+    #logs .d-flex.flex-column.flex-md-row.justify-content-between.align-items-md-center > div:first-child h2 {
+        text-align: center !important;
+    }
+}
+
+/* Center website name and logo in login and register cards */
+body.bg-light .card .text-center .navbar-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+body.bg-light .card .text-center .navbar-brand i {
+    margin-bottom: 5px !important;
+    display: block !important;
+}
+
+body.bg-light .card .text-center .navbar-brand span {
+    text-align: center !important;
+    display: block !important;
+}
+
+/* Force centering for login and register pages */
+.login-page .navbar-brand,
+.register-page .navbar-brand {
+    text-align: center !important;
+    display: block !important;
+    margin: 0 auto 15px auto !important;
+}
+
+.login-page .navbar-brand i,
+.register-page .navbar-brand i {
+    display: block !important;
+    text-align: center !important;
+    margin-bottom: 5px !important;
+}
+
+.login-page .navbar-brand span,
+.register-page .navbar-brand span {
+    display: block !important;
+    text-align: center !important;
+}
+
+/* Specific centering for register page navbar-brand */
+body.bg-light .card .text-center .navbar-brand.fs-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin: 0 auto 15px auto !important;
+    width: fit-content !important;
+}
+
+body.bg-light .card .text-center .navbar-brand.fs-2 i,
+body.bg-light .card .text-center .navbar-brand.fs-2 span {
+    display: block !important;
+    text-align: center !important;
+}
+
+/* Force center Lullaby Lark logo and text */
+body.bg-light .card .text-center a.navbar-brand {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto 15px auto !important;
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+body.bg-light .card .text-center a.navbar-brand i {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 auto 5px auto !important;
+}
+
+body.bg-light .card .text-center a.navbar-brand span {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+/* Fix link hover color in login and register pages */
+body.bg-light .card a:not(.navbar-brand):not(.btn):hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+    transition: all 0.3s ease !important;
+}
+
+body.bg-light .card a:not(.navbar-brand):not(.btn) {
+    transition: all 0.3s ease !important;
+}
+
+/* Force hover effect for all links in login and register pages */
+body.bg-light .card a:hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+}
+
+body.bg-light .card .small a:hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+}
+
+body.bg-light .card .form-check-label a:hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+}
+
+body.bg-light .card .text-center a:not(.navbar-brand):not(.btn):hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+}
+
+/* Hide consultant card on mobile in About page */
+    .position-absolute.bottom-0.start-50.translate-middle-x.mb-n4.w-75 {
+        display: none !important;
+    }
+}
+
 /* About Page Specialized Sections */
 .sticky-half {
     position: sticky;
@@ -1455,6 +1768,11 @@ footer {
     background: var(--light-color);
     transform: translateY(-15px);
     box-shadow: var(--shadow);
+}
+
+.badge-item:hover h4,
+.badge-item:hover p {
+    color: var(--text-color) !important;
 }
 
 .pillar-count {
@@ -2010,11 +2328,24 @@ footer {
     justify-content: center;
     margin-bottom: 30px;
     transition: 0.6s;
+    color: var(--primary-color) !important;
 }
 
 .milestone-card:hover .milestone-icon {
     background: var(--primary-color);
-    color: white;
+    color: white !important;
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Dark theme milestone icons */
+[data-theme="dark"] .milestone-icon {
+    background: var(--surface-color);
+    color: white !important;
+}
+
+[data-theme="dark"] .milestone-card:hover .milestone-icon {
+    background: var(--primary-color);
+    color: white !important;
     transform: rotate(10deg) scale(1.1);
 }
 
@@ -2233,37 +2564,7 @@ section {
         box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
     }
 
-    .holistic-img-frame {
-        position: relative;
-        padding: 20px;
-    }
 
-    .decorative-border {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 3px solid var(--tertiary-color);
-        border-radius: 50px;
-        opacity: 0.1;
-        transform: rotate(-3deg);
-        z-index: 0;
-    }
-
-    .holistic-img {
-        border-radius: 50px;
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        position: relative;
-        z-index: 1;
-        transition: var(--transition);
-    }
-
-    .holistic-img-frame:hover .holistic-img {
-        transform: scale(1.02) rotate(1deg);
-    }
 
     .animated-card {
         position: relative;
@@ -2663,6 +2964,10 @@ section {
     position: relative;
 }
 
+[data-theme="dark"] .navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]) {
+    color: #ffffff !important;
+}
+
 .navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]):hover,
 .navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]).active {
     background: transparent;
@@ -2740,14 +3045,18 @@ section {
 
 /* RTL toggle specific styling */
 .navbar-nav .nav-link[id="rtl-toggle"] {
-    background: #6c757d;
+    background: var(--tertiary-color);
     color: white;
-    border-color: #6c757d;
+    border-color: var(--tertiary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .navbar-nav .nav-link[id="rtl-toggle"]:hover {
-    background: #5a6268;
-    border-color: #5a6268;
+    background: #b8a6d2;
+    border-color: #b8a6d2;
 }
 
 /* Theme toggle specific styling */
@@ -2864,11 +3173,206 @@ body.bg-light .dashboard-wrapper .sidebar .navbar-brand span {
     color: #6C9BCF !important;
 }
 
+/* Desktop Header Alignment: center main menu, keep action buttons at right */
+@media (min-width: 1200px) {
+    .navbar .container {
+        position: relative;
+    }
+
+    .navbar .offcanvas {
+        position: absolute !important;
+        inset: 0;
+        width: 100% !important;
+        height: 100% !important;
+        border: 0 !important;
+        background: transparent !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+    .navbar .offcanvas-header {
+        display: none !important;
+    }
+
+    .navbar-brand {
+        position: relative;
+        z-index: 2;
+    }
+
+    .navbar .offcanvas-body {
+        height: 100%;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .navbar .offcanvas-body .navbar-nav {
+        justify-content: center !important;
+        width: 100%;
+        position: relative;
+        gap: 2px;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#rtl-toggle,
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#theme-toggle,
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="dashboard.html"],
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="login.html"],
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="register.html"] {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 !important;
+    }
+
+    /* Updated desktop layout with better spacing and order */
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="login.html"] {
+        right: 0;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#theme-toggle {
+        right: 110px;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#rtl-toggle {
+        right: 155px;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="dashboard.html"] {
+        right: 215px;
+    }
+
+    /* If register exists, shift right controls to keep spacing */
+    .navbar .offcanvas-body .navbar-nav:has(> .nav-item > .nav-link[href="register.html"])>.nav-item>.nav-link[href="register.html"] {
+        right: 0;
+    }
+
+    .navbar .offcanvas-body .navbar-nav:has(> .nav-item > .nav-link[href="register.html"])>.nav-item>.nav-link[href="login.html"] {
+        right: 110px;
+    }
+
+    .navbar .offcanvas-body .navbar-nav:has(> .nav-item > .nav-link[href="register.html"])>.nav-item>.nav-link#theme-toggle {
+        right: 220px;
+    }
+
+    .navbar .offcanvas-body .navbar-nav:has(> .nav-item > .nav-link[href="register.html"])>.nav-item>.nav-link#rtl-toggle {
+        right: 265px;
+    }
+
+    .navbar .offcanvas-body .navbar-nav:has(> .nav-item > .nav-link[href="register.html"])>.nav-item>.nav-link[href="dashboard.html"] {
+        right: 325px;
+    }
+
+    /* Theme is icon-only (not a button) */
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#theme-toggle {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 0 !important;
+        color: #495057 !important;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#theme-toggle i {
+        font-size: 1.35rem !important;
+        line-height: 1;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#theme-toggle:hover {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: var(--primary-color) !important;
+        transform: translateY(-50%) !important;
+    }
+
+    [data-theme="dark"] .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#theme-toggle {
+        color: #ffffff !important;
+    }
+
+    /* Dashboard Premium "Soft Squircle" Design */
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="dashboard.html"] {
+        width: 44px;
+        height: 44px;
+        padding: 0 !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(108, 155, 207, 0.08) !important;
+        border: 1px solid rgba(108, 155, 207, 0.15) !important;
+        color: var(--primary-color) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02) !important;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="dashboard.html"]:hover {
+        background: var(--primary-color) !important;
+        color: white !important;
+        border-color: var(--primary-color) !important;
+        transform: translateY(-50%) translateY(-3px) scale(1.05) !important;
+        box-shadow: 0 8px 25px rgba(108, 155, 207, 0.25) !important;
+    }
+
+    [data-theme="dark"] .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="dashboard.html"] {
+        background: rgba(108, 155, 207, 0.15) !important;
+        border-color: rgba(108, 155, 207, 0.25) !important;
+        color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="dashboard.html"]:hover {
+        background: var(--primary-color) !important;
+        color: white !important;
+    }
+
+    /* RTL as unique icon control */
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#rtl-toggle {
+        width: 42px;
+        height: 42px;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.1rem !important;
+        background: var(--tertiary-color) !important;
+        border: 1px solid var(--tertiary-color) !important;
+        color: #ffffff !important;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#rtl-toggle i {
+        font-size: 1.1rem;
+        display: block !important;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link#rtl-toggle:hover {
+        background: #b8a6d2 !important;
+        border-color: #b8a6d2 !important;
+        transform: translateY(-50%) scale(1.05) !important;
+    }
+
+    /* Login remains styled as button */
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="login.html"] {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="login.html"],
+    .navbar .offcanvas-body .navbar-nav>.nav-item>.nav-link[href="register.html"] {
+        padding: 8px 24px !important;
+        border-radius: 999px !important;
+    }
+}
+
 /* Mobile hamburger menu - same button styling */
 @media (max-width: 1199.98px) {
     .navbar-nav {
-        flex-direction: column !important;
-        align-items: flex-start !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
         gap: 10px !important;
     }
 
@@ -2877,22 +3381,65 @@ body.bg-light .dashboard-wrapper .sidebar .navbar-brand span {
         margin: 0 !important;
     }
 
-    /* Main navigation items in mobile - align left */
-    .navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]) {
-        width: 100% !important;
-        justify-content: flex-start !important;
-        padding: 12px 20px !important;
+    /* Action icons in one row */
+    .navbar-nav .nav-item:has(> #rtl-toggle),
+    .navbar-nav .nav-item:has(> #theme-toggle),
+    .navbar-nav .nav-item:has(> [href="dashboard.html"]) {
+        width: calc(33.33% - 14px) !important;
+        flex-grow: 1;
     }
+    
+    /* Main navigation items in mobile - no button styling, align left */
+    .navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]) {
+        width: auto;
+        justify-content: flex-start;
+        padding: 10px 16px;
+        margin-bottom: 4px;
+    }
+    
+    /* Center "How We Work Together" heading in mobile/tablet */
+    .how-it-works h2 {
+        text-align: center !important;
+    }
+    
+    /* Center "Your Smart Sleep Companion" heading in tablet */
+    .app-showcase h2 {
+        text-align: center !important;
+    }
+    
 
-    /* Button items in mobile - stack vertically and take full width */
+    
+    /* Icon items in mobile - centered and compact */
     .navbar-nav .nav-link[id="rtl-toggle"],
     .navbar-nav .nav-link[id="theme-toggle"],
-    .navbar-nav .nav-link[href="dashboard.html"],
+    .navbar-nav .nav-link[href="dashboard.html"] {
+        display: flex !important;
+        width: 100% !important;
+        justify-content: center !important;
+        border-radius: 12px !important;
+        padding: 12px !important;
+        margin: 0 !important;
+    }
+
+    [data-theme="dark"] .navbar-nav .nav-link[id="theme-toggle"],
+    [data-theme="dark"] .navbar-nav .nav-link[href="dashboard.html"] {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .navbar-nav .nav-link[id="theme-toggle"]:hover,
+    [data-theme="dark"] .navbar-nav .nav-link[href="dashboard.html"]:hover {
+        background: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+    }
+
+    /* Login item - full width below the icons */
     .navbar-nav .nav-link[href="login.html"],
     .navbar-nav .nav-link[href="register.html"] {
         display: flex !important;
         width: 100% !important;
-        justify-content: flex-start !important;
+        justify-content: center !important;
         border-radius: 12px !important;
         padding: 12px 20px !important;
         margin: 0 !important;
@@ -3076,4 +3623,97 @@ footer .logo img {
 [data-theme="dark"] footer .brand-name img,
 [data-theme="dark"] footer .logo img {
     filter: brightness(0) saturate(100%) invert(62%) sepia(85%) saturate(423%) hue-rotate(199deg) brightness(96%) contrast(89%);
+}
+
+/* Footer hover effects */
+.newsletter-form button:hover,
+#back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 155, 207, 0.3);
+    transition: all 0.3s ease;
+}
+
+.newsletter-form button {
+    transition: all 0.3s ease;
+}
+
+#back-to-top {
+    transition: all 0.3s ease;
+    color: var(--primary-color) !important;
+}
+
+#back-to-top i {
+    color: var(--primary-color) !important;
+}
+
+/* Auth pages: center website name/logo and make text link hover states clear */
+body.auth-page .auth-card .navbar-brand {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: fit-content;
+    margin: 0 auto 0.5rem auto !important;
+}
+
+body.auth-page .auth-card .navbar-brand i,
+body.auth-page .auth-card .navbar-brand span {
+    margin: 0 !important;
+}
+
+body.auth-page .auth-card a.auth-link {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+body.auth-page .auth-card a.auth-link:hover,
+body.auth-page .auth-card a.auth-link:focus-visible {
+    color: #5B8ABF !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+}
+
+body.auth-page .auth-card .remember-forgot-row {
+    flex-wrap: nowrap;
+}
+
+@media (max-width: 380px) {
+    body.auth-page .auth-card .remember-forgot-row .form-check-label,
+    body.auth-page .auth-card .remember-forgot-row .auth-link {
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+}
+
+/* Blog evidence points: keep icon and label aligned without overlap */
+.evidence-point .evidence-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+}
+
+.evidence-point .evidence-icon i {
+    line-height: 1;
+}
+
+/* Contact page quick info: ensure social icons remain visible in all themes */
+.quick-contact-socials .quick-social-btn {
+    width: 52px;
+    height: 52px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color) !important;
+}
+
+.quick-contact-socials .quick-social-btn i {
+    font-size: 1rem;
+    line-height: 1;
+    color: inherit !important;
 }

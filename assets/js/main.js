@@ -42,26 +42,27 @@ const updateToggleIcon = (btn, theme) => {
 // RTL Management
 const initRTL = () => {
     const rtlToggle = document.getElementById('rtl-toggle');
-    if (!rtlToggle) return;
-
-    const currentRTL = localStorage.getItem('rtl') || 'ltr';
-    if (currentRTL === 'rtl') {
-        document.documentElement.setAttribute('dir', 'rtl');
-        document.body.classList.add('rtl-enabled');
-    }
-
-    rtlToggle.addEventListener('click', () => {
-        const currentDir = document.documentElement.getAttribute('dir');
-        const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
-        
-        document.documentElement.setAttribute('dir', newDir);
-        localStorage.setItem('rtl', newDir);
-        
-        if (newDir === 'rtl') {
+    const setRTLDirection = (dir) => {
+        document.documentElement.setAttribute('dir', dir);
+        if (dir === 'rtl') {
             document.body.classList.add('rtl-enabled');
         } else {
             document.body.classList.remove('rtl-enabled');
         }
+    };
+
+    const currentRTL = localStorage.getItem('rtl') || 'ltr';
+    setRTLDirection(currentRTL);
+
+    if (!rtlToggle) return;
+
+    rtlToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        const currentDir = document.documentElement.getAttribute('dir');
+        const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+        
+        setRTLDirection(newDir);
+        localStorage.setItem('rtl', newDir);
     });
 };
 
