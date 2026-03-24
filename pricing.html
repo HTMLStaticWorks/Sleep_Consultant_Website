@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing & Packages | Lullaby Lark Sleep Consultation</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-xl fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-moon-stars-fill"></i>
+                <span>Lullaby Lark</span>
+            </a>
+            
+            <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="bi bi-list fs-1 text-primary"></span>
+            </button>
+            
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title text-primary"><i class="bi bi-moon-stars-fill me-2"></i>Menu</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link d-inline-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Home <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem; transform: translateY(1px);"></i>
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 overflow-hidden">
+                                <li><a class="dropdown-item py-2" href="index.html">Home</a></li>
+                                <li><a class="dropdown-item py-2" href="home-2.html">Home 2</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="pricing.html">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="rtl-toggle">
+                                RTL
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="theme-toggle">
+                                <i class="bi bi-moon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="bi bi-grid-fill"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.html">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Title -->
+    <header class="py-10 mt-5 bg-white text-dark text-center">
+        <div class="container animate-on-scroll">
+            <h1 class="display-3 mb-4">Pricing Plans</h1>
+            <p class="lead text-gray mb-5 max-w-600 mx-auto">Choose the right level of support for your family's journey back to sleep.</p>
+        </div>
+    </header>
+
+    <!-- Pricing Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                
+                <!-- Plan 1: Basic Support -->
+                <div class="col-lg-4 animate-on-scroll">
+                    <div class="card h-100 p-5 border-0 shadow-sm rounded-4 text-center">
+                         <h4 class="mb-3">Self-Guided Intro</h4>
+                         <div class="display-3 fw-bold mb-4">$95</div>
+                         <p class="text-gray mb-5">Perfect for families looking for a jumpstart with professional advice.</p>
+                         <ul class="list-unstyled text-start mb-5 text-gray small">
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> 30-Min Consultation</li>
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> Sample Schedule PDF</li>
+                             <li class="mb-3 d-flex gap-3 opacity-50"><i class="bi bi-x-circle-fill text-danger"></i> No Personalized Plan</li>
+                             <li class="mb-3 d-flex gap-3 opacity-50"><i class="bi bi-x-circle-fill text-danger"></i> No Messenger Support</li>
+                         </ul>
+                         <button class="btn btn-outline w-100 rounded-pill mt-auto">Choose Plan</button>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Complete Package (Highlighted) -->
+                <div class="col-lg-4 animate-on-scroll">
+                    <div class="card h-100 p-5 border-2 border-primary shadow-lg rounded-5 text-center bg-white position-relative overflow-hidden">
+                         <div class="bg-primary text-white position-absolute py-2 px-5 rotate-45 transform-translate-middle" style="top: 25px; right: -40px; transform: rotate(45deg); font-size: 12px; font-weight: bold; width: 220px;">MOST POPULAR</div>
+                         <h4 class="mb-3">Standard Support</h4>
+                         <div class="display-3 fw-bold mb-4">$395</div>
+                         <p class="text-gray mb-5">Ideal for babies requiring a deeper dive and ongoing implementation support.</p>
+                         <ul class="list-unstyled text-start mb-5 text-gray small">
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> 60-Min Consultation</li>
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> Personalized Sleep Strategy</li>
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> 14 Days WhatsApp Support</li>
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> 2-Week Follow-up Recap</li>
+                         </ul>
+                         <button class="btn btn-primary w-100 rounded-pill mt-auto py-3">Get Started Today</button>
+                    </div>
+                </div>
+
+                <!-- Plan 3: Premium Support -->
+                <div class="col-lg-4 animate-on-scroll">
+                    <div class="card h-100 p-5 border-0 shadow-sm rounded-4 text-center">
+                         <h4 class="mb-3">Concierge Package</h4>
+                         <div class="display-3 fw-bold mb-4">$595</div>
+                         <p class="text-gray mb-5">End-to-end support for siblings, twins, or families needing white-glove care.</p>
+                         <ul class="list-unstyled text-start mb-5 text-gray small">
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> 90-Min In-Home (Local) or Video</li>
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> Custom Plan for Multiple Children</li>
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> 30 Days Priority Messaging</li>
+                             <li class="mb-3 d-flex gap-3"><i class="bi bi-check-circle-fill text-success"></i> Night One On-Call Support</li>
+                         </ul>
+                         <button class="btn btn-outline w-100 rounded-pill mt-auto">Choose Plan</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. Investment in Well-being (Stat Grid Section) -->
+    <section class="container px-4">
+        <div class="row g-4 investment-row animate-on-scroll">
+            <div class="col-lg-5">
+                <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2 mb-4">The Value of Rest</span>
+                <h2 class="display-5 fw-bold mb-4">The Ultimate Investment in Your Family's Health</h2>
+                <p class="text-gray lead mb-5">Research shows that a well-rested child has 40% better focus and a much stronger immune system. Our packages are designed to provide lifetime value for your household.</p>
+                <div class="d-flex align-items-center gap-3 text-primary fw-bold fs-5">
+                    <i class="bi bi-patch-check-fill"></i>
+                    <span>Trusted by 10,000+ Weary Parents</span>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1 animate-on-scroll">
+                <div class="card bg-white border-0 shadow-2xl rounded-5 p-2 overflow-hidden position-relative">
+                    <img src="assets/images/sleep_stats.png" alt="Sleep ROI Dashboard" class="img-fluid rounded-4 shadow-sm w-100 h-100 object-fit-cover" style="opacity: 0.9;">
+                    
+                    <!-- Floating Stat Tiles (Dashboard Style) -->
+                    <div class="position-absolute bottom-0 start-0 p-4 w-100" style="background: linear-gradient(transparent, rgba(255,255,255,0.95));">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="glass-card p-3 rounded-4 shadow-sm text-center">
+                                    <h4 class="fw-bold text-primary mb-1">1,000+</h4>
+                                    <p class="x-small text-gray mb-0">Extra hours of parental rest</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="glass-card p-3 rounded-4 shadow-sm text-center">
+                                    <h4 class="fw-bold text-primary mb-1">40%</h4>
+                                    <p class="x-small text-gray mb-0">Improvement in focus</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="glass-card p-3 rounded-4 shadow-sm text-center">
+                                    <h4 class="fw-bold text-primary mb-1">-15%</h4>
+                                    <p class="x-small text-gray mb-0">Reduction in stress cortisol</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="glass-card p-3 rounded-4 shadow-sm text-center">
+                                    <h4 class="fw-bold text-primary mb-1">98%</h4>
+                                    <p class="x-small text-gray mb-0">Long-term success rate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Detailed Comparison (Grid Table) -->
+    <section class="py-10 reassurance-bg">
+        <div class="container px-4">
+            <div class="text-center mb-5 animate-on-scroll">
+                <h2 class="display-4 fw-bold mb-3">Which Package is Best?</h2>
+                <p class="text-gray lead">A side-by-side look at how we support your journey.</p>
+            </div>
+            
+            <div class="comparison-grid animate-on-scroll">
+                <div class="comparison-row comparison-header d-none d-lg-grid">
+                    <div>Service Feature</div>
+                    <div class="text-center">Basic</div>
+                    <div class="text-center">Standard</div>
+                    <div class="text-center">Concierge</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="fw-bold">Initial Deep-Dive Consultation</div>
+                    <div class="text-center">30 Mins</div>
+                    <div class="text-center fw-bold text-primary">60 Mins</div>
+                    <div class="text-center fw-bold">90 Mins</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="fw-bold">Custom Sleep Strategy & Roadmap</div>
+                    <div class="text-center"><i class="bi bi-x-circle text-danger opacity-20"></i></div>
+                    <div class="text-center"><i class="bi bi-check-circle-fill text-primary fs-5"></i></div>
+                    <div class="text-center"><i class="bi bi-check-circle-fill text-primary fs-5"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="fw-bold">WhatsApp Follow-up Support</div>
+                    <div class="text-center"><i class="bi bi-x-circle text-danger opacity-20"></i></div>
+                    <div class="text-center">14 Days</div>
+                    <div class="text-center fw-bold">30 Days</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="fw-bold">Night One On-Call Support</div>
+                    <div class="text-center"><i class="bi bi-x-circle text-danger opacity-20"></i></div>
+                    <div class="text-center"><i class="bi bi-x-circle text-danger opacity-20"></i></div>
+                    <div class="text-center fw-bold text-primary"><i class="bi bi-check-circle-fill fs-5"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Our Payment Promise (Trust Indicators) -->
+    <section class="py-10 bg-white">
+        <div class="container px-4">
+            <div class="text-center animate-on-scroll mb-5">
+                <h2 class="display-5 fw-bold mb-3">The Lullaby Lark Promise</h2>
+                <p class="text-gray lead">Peace of mind for every transaction.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 animate-on-scroll">
+                    <div class="trust-item pulse-soft card shadow-sm p-5 border-0 rounded-4 h-100">
+                        <i class="bi bi-shield-lock-fill fs-1 text-primary mb-4 d-block"></i>
+                        <h4 class="fw-bold mb-3">100% Secure Checkout</h4>
+                        <p class="text-gray mb-0">We use bank-level encryption (Stripe/PayPal) to ensure your financial details are always protected.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="trust-item pulse-soft card shadow-sm p-5 border-0 rounded-4 h-100">
+                        <i class="bi bi-calendar-check-fill fs-1 text-tertiary mb-4 d-block"></i>
+                        <h4 class="fw-bold mb-3">Flexible Booking</h4>
+                        <p class="text-gray mb-0">Change of plans? Reschedule your consultation up to 24 hours in advance at no extra cost.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="trust-item pulse-soft card shadow-sm p-5 border-0 rounded-4 h-100">
+                        <i class="bi bi-heart-fill fs-1 text-danger-emphasis mb-4 d-block"></i>
+                        <h4 class="fw-bold mb-3">The Satisfaction Pledge</h4>
+                        <p class="text-gray mb-0">If we aren't the right fit for your family after the first call, we offer a hassle-free refund process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container animate-on-scroll">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="navbar-brand mb-3 d-inline-block" href="#">
+                        <i class="bi bi-moon-stars-fill"></i>
+                        <span>Lullaby Lark</span>
+                    </a>
+                    <p class="text-gray pe-lg-5">Empowering families with gentle and effective sleep solutions. Because every parent deserves rest.</p>
+                    <div class="social-links d-flex gap-3 mt-4">
+                        <a href="#" class="fs-4 text-primary social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="fs-4 text-primary social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="fs-4 text-primary social-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-4 fw-bold">Company</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="footer-link">Home</a></li>
+                        <li class="mb-2"><a href="services.html" class="footer-link">Services</a></li>
+                        <li class="mb-2"><a href="about.html" class="footer-link">About Us</a></li>
+                        <li class="mb-2"><a href="blog.html" class="footer-link">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-4 fw-bold">Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="contact.html" class="footer-link">Contact</a></li>
+                        <li class="mb-2"><a href="pricing.html" class="footer-link">Pricing</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Terms</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-4 fw-bold">Newsletter</h5>
+                    <p class="text-gray mb-4">Get sleep tips delivered to your inbox weekly.</p>
+                    <form action="#" class="newsletter-form position-relative">
+                        <input type="email" class="form-control rounded-pill py-3 px-4 border-0 shadow-sm" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y me-2 px-4 rounded-pill">Join</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-5 opacity-10">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-gray mb-0">&copy; 2026 Lullaby Lark. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <div id="back-to-top" class="d-inline-block text-primary fs-5" style="cursor: pointer;">
+                        Back to top <i class="bi bi-arrow-up-circle-fill ms-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

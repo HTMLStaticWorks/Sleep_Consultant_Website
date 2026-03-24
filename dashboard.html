@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard | Lullaby Lark Client Portal</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+        }
+
+        .dashboard-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--light-color);
+            border-right: 1px solid rgba(0,0,0,0.05);
+            padding: 40px 20px;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        [data-theme="dark"] .sidebar {
+            border-right-color: rgba(255,255,255,0.05);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            background: var(--secondary-color);
+            min-height: 100vh;
+            padding: 40px;
+            max-width: calc(100% - var(--sidebar-width));
+        }
+
+        .sidebar-nav .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 5px;
+            color: var(--gray-color) !important;
+            transition: var(--transition);
+        }
+
+        .sidebar-nav .nav-link:hover, .sidebar-nav .nav-link.active {
+            background-color: var(--primary-color);
+            color: white !important;
+        }
+
+        .sidebar-nav .nav-link::after { display: none; }
+
+        .dashboard-section { display: none; width: 100%; }
+        .dashboard-section.active { display: block; }
+
+        /* Mobile Sidebar */
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); width: 100%; max-width: 300px; }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; max-width: 100%; width: 100%; }
+        }
+
+        .stats-card { background: var(--light-color); color: var(--dark-color); border-radius: 20px; padding: 25px; box-shadow: var(--shadow); border: none; width: 100%; }
+        .chart-container { height: 350px; width: 100%; position: relative; }
+
+        /* Message UI */
+        .chat-bubble { max-width: 80%; padding: 15px 20px; border-radius: 20px; margin-bottom: 15px; }
+        .chat-bubble.sent { background: var(--primary-color); color: white; align-self: flex-end; }
+        .chat-bubble.received { background: #E8E2F2; color: var(--dark-color); align-self: flex-start; }
+        [data-theme="dark"] .chat-bubble.received { background: #2D3436; color: white; }
+        
+        body { background-color: var(--secondary-color) !important; color: var(--dark-color) !important; overflow-x: hidden; }
+        .bg-light { background-color: transparent !important; }
+        .text-gray { color: var(--gray-color) !important; }
+        .border-light { border-color: rgba(255,255,255,0.1) !important; }
+        [data-theme="light"] .border-light { border-color: rgba(0,0,0,0.05) !important; }
+
+        .text-primary { color: var(--primary-color) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .btn-primary { background-color: var(--primary-color) !important; border-color: var(--primary-color) !important; }
+        
+        /* Table Theme Fixes */
+        .table { color: inherit !important; background-color: transparent !important; }
+        .table thead th { border-bottom: 1px solid rgba(128,128,128,0.2) !important; color: var(--gray-color) !important; background: transparent !important; }
+        .table tbody td { border-bottom: 1px solid rgba(128,128,128,0.1) !important; background: transparent !important; color: inherit !important; }
+        
+        [data-theme="dark"] .stats-card, 
+        [data-theme="dark"] .card,
+        [data-theme="dark"] div.bg-white,
+        [data-theme="dark"] div.bg-light { background-color: #222222 !important; color: #F8F4EF !important; }
+        
+        [data-theme="dark"] .table { color: #F8F4EF !important; }
+        [data-theme="dark"] .text-gray { color: #B2BEC3 !important; }
+        [data-theme="dark"] .text-dark { color: #FFFFFF !important; }
+        [data-theme="dark"] .bg-light-subtle { background-color: #1A1A1A !important; }
+        
+        /* Message UI Dark Mode */
+        [data-theme="dark"] .chat-bubble.received { background: #2D3436 !important; color: #FFFFFF !important; }
+        [data-theme="dark"] .chat-bubble.sent { background: var(--primary-color) !important; }
+        [data-theme="dark"] .form-control { background-color: #2D3436 !important; color: white !important; border-color: rgba(255,255,255,0.1) !important; }
+        [data-theme="dark"] .form-control::placeholder { color: rgba(255,255,255,0.4) !important; }
+        
+        /* Sidebar Fix */
+        [data-theme="dark"] .sidebar { background: #1A1A1A !important; }
+        [data-theme="dark"] .nav-link { color: #B2BEC3 !important; }
+        [data-theme="dark"] .nav-link.active { background: var(--primary-color) !important; color: white !important; }
+
+        /* Theme Toggle & Hamburger Refinement */
+        #theme-toggle { background: rgba(0,0,0,0.05); border: none; transition: var(--transition); }
+        [data-theme="dark"] #theme-toggle { background: rgba(255,255,255,0.1) !important; color: white !important; }
+        #theme-toggle:hover { background: var(--primary-color) !important; color: white !important; }
+        
+        [data-theme="dark"] .sidebar-toggle i { color: var(--primary-color) !important; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar shadow-sm">
+            <div class="sidebar-header mb-5 px-3">
+                 <a href="index.html" class="navbar-brand m-0">
+                    <i class="bi bi-moon-stars-fill"></i>
+                    <span>Lullaby Lark</span>
+                 </a>
+                 <button class="btn d-lg-none sidebar-toggle p-0 border-0 position-absolute end-0 top-0 mt-3 me-3"><i class="bi bi-x fs-1 text-primary"></i></button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-link active"><i class="bi bi-grid-fill"></i> Dashboard</a>
+                <a href="#logs" class="nav-link"><i class="bi bi-file-earmark-bar-graph-fill"></i> Sleep Logs</a>
+                <a href="#plans" class="nav-link"><i class="bi bi-journal-text"></i> Sleep Plans</a>
+                <a href="#messages" class="nav-link"><i class="bi bi-chat-heart-fill"></i> Messages <span class="badge rounded-pill bg-danger ms-auto">2</span></a>
+                <hr class="my-4 opacity-5">
+                <a href="javascript:void(0)" class="nav-link"><i class="bi bi-person-fill"></i> Profile</a>
+                <a href="javascript:void(0)" class="nav-link"><i class="bi bi-gear-fill"></i> Settings</a>
+                <a href="login.html" class="nav-link mt-5"><i class="bi bi-box-arrow-left"></i> Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar (Visible everywhere) -->
+            <div class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom border-light">
+                 <div class="d-flex align-items-center gap-3">
+                     <button class="btn btn-white shadow-sm sidebar-toggle d-lg-none"><i class="bi bi-list fs-2"></i></button>
+                     <h1 class="h4 fw-bold mb-0">Parent Portal</h1>
+                 </div>
+                 <div class="d-flex align-items-center gap-2">
+                     <div id="theme-toggle" class="btn btn-light rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; cursor: pointer;">
+                        <i class="bi bi-moon"></i>
+                     </div>
+                     <div class="bg-primary text-white p-2 rounded-circle" style="width: 40px; height: 40px; text-align: center; line-height: 24px; cursor: pointer;">S</div>
+                 </div>
+            </div>
+
+            <!-- Dashboard Overview -->
+            <section id="overview" class="dashboard-section active animate-on-scroll">
+                <div class="d-flex justify-content-between align-items-center mb-5 gap-3">
+                     <div>
+                          <h2 class="h3 fw-bold mb-1">Hello, Sarah & Leo</h2>
+                          <p class="text-gray mb-0 small">Here's your little one's progress for the week.</p>
+                     </div>
+                     <button class="btn btn-primary btn-new-log rounded-pill shadow-sm btn-sm px-2 text-nowrap" title="New Sleep Log">
+                         <i class="bi bi-plus-lg small"></i>
+                         <span class="ms-1" style="font-size: 0.75rem;">New Sleep Log</span>
+                     </button>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-md-3">
+                        <div class="stats-card h-100 text-center">
+                            <span class="text-primary small d-block mb-2 text-uppercase fw-bold">Total Sleep (Last 24h)</span>
+                            <h3 class="fw-bold mb-1">11.5 <small class="fw-normal text-gray fs-6">h</small></h3>
+                            <p class="small text-success mb-0"><i class="bi bi-arrow-up-short"></i> +45m</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card h-100 text-center">
+                            <span class="text-primary small d-block mb-2 text-uppercase fw-bold">Night Wakings</span>
+                            <h3 class="fw-bold mb-1">2 <small class="fw-normal text-gray fs-6">times</small></h3>
+                            <p class="small text-muted mb-0">— Avg</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card h-100 text-center">
+                            <span class="text-primary small d-block mb-2 text-uppercase fw-bold">Quality Score</span>
+                            <h3 class="fw-bold mb-1">94 <small class="fw-normal text-gray fs-6">%</small></h3>
+                            <p class="small text-success mb-0"><i class="bi bi-stars"></i> Excellent</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card h-100 text-center">
+                            <span class="text-primary small d-block mb-2 text-uppercase fw-bold">Next Milestone</span>
+                            <h3 class="fw-bold mb-1">8 <small class="fw-normal text-gray fs-6">days</small></h3>
+                            <p class="small text-gray mb-0">"Self-Settling"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card mb-5">
+                     <h5 class="fw-bold mb-4">Sleep Duration Trends</h5>
+                     <div class="chart-container">
+                         <canvas id="sleepChart"></canvas>
+                     </div>
+                </div>
+
+                <div class="row g-4">
+                     <div class="col-lg-8">
+                         <div class="stats-card border-0">
+                             <h5 class="fw-bold mb-4">Recent Logs</h5>
+                             <div class="table-responsive">
+                                 <table class="table table-borderless table-hover align-middle">
+                                     <thead class="bg-light">
+                                         <tr>
+                                             <th class="p-3 border-0 rounded-start">Date</th>
+                                             <th class="p-3 border-0">Total Time</th>
+                                             <th class="p-3 border-0">Wakestyle</th>
+                                             <th class="p-3 border-0 rounded-end">Status</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody>
+                                         <tr>
+                                             <td class="p-3 fw-medium">Mar 21, 2026</td>
+                                             <td class="p-3 text-gray">11h 30m</td>
+                                             <td class="p-3 text-gray">Gentle</td>
+                                             <td class="p-3"><span class="badge bg-success-subtle text-success px-3">On Track</span></td>
+                                         </tr>
+                                         <tr>
+                                             <td class="p-3 fw-medium">Mar 20, 2026</td>
+                                             <td class="p-3 text-gray">10h 45m</td>
+                                             <td class="p-3 text-gray">Frequent</td>
+                                             <td class="p-3"><span class="badge bg-warning-subtle text-warning px-3">Regression</span></td>
+                                         </tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-4">
+                         <div class="stats-card h-100 border-primary border-start border-4">
+                             <h5 class="fw-bold mb-3"><i class="bi bi-star-fill text-primary me-2"></i>Plan Tip of the Day</h5>
+                             <p class="text-gray mb-0">"Try extending the pre-nap routine by 5 minutes today. Focus on quiet voice and low light to signal the transition earlier."</p>
+                             <div class="mt-4">
+                                 <a href="#plans" class="small fw-bold text-decoration-none">View Full Plan <i class="bi bi-arrow-right ps-1"></i></a>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </section>
+            
+            <!-- Sleep Logs Section -->
+            <section id="logs" class="dashboard-section animate-on-scroll">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-4">
+                     <div>
+                          <h2 class="h3 fw-bold mb-1">Detailed Sleep Logs</h2>
+                          <p class="text-gray mb-0">Track and analyze your baby's sleep patterns over time.</p>
+                     </div>
+                     <div class="d-flex justify-content-center justify-content-md-end gap-2">
+                          <button class="btn btn-outline btn-sm rounded-pill px-4"><i class="bi bi-filter me-2"></i> Filter</button>
+                          <button class="btn btn-primary btn-sm rounded-pill px-4"><i class="bi bi-download me-2"></i> Export CSV</button>
+                     </div>
+                </div>
+
+                <!-- Log Summary Cards -->
+                <div class="row g-4 mb-5">
+                    <div class="col-6 col-md-3">
+                        <div class="stats-card p-3 text-center border-0 bg-primary-subtle bg-opacity-10">
+                            <span class="text-gray small d-block mb-1">Avg. Bedtime</span>
+                            <span class="h5 fw-bold mb-0">7:12 PM</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stats-card p-3 text-center border-0 bg-success-subtle bg-opacity-10">
+                            <span class="text-gray small d-block mb-1">Avg. Total</span>
+                            <span class="h5 fw-bold mb-0">11.2 hrs</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stats-card p-3 text-center border-0 bg-warning-subtle bg-opacity-10">
+                            <span class="text-gray small d-block mb-1">Night Wakes</span>
+                            <span class="h5 fw-bold mb-0">1.4 avg</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stats-card p-3 text-center border-0 bg-info-subtle bg-opacity-10">
+                            <span class="text-gray small d-block mb-1">Efficiency</span>
+                            <span class="h5 fw-bold mb-0">94%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                     <div class="table-responsive">
+                         <table class="table table-hover align-middle">
+                             <thead>
+                                 <tr>
+                                     <th class="border-0">Date</th>
+                                     <th class="border-0">Bedtime</th>
+                                     <th class="border-0">Wake Up</th>
+                                     <th class="border-0">Total Sleep</th>
+                                     <th class="border-0">Quality</th>
+                                     <th class="border-0">Notes & Observations</th>
+                                 </tr>
+                             </thead>
+                             <tbody class="text-gray">
+                                 <tr>
+                                     <td>Mar 21, 2026</td>
+                                     <td>7:15 PM</td>
+                                     <td>6:45 AM</td>
+                                     <td class="fw-bold text-dark">11.5h</td>
+                                     <td><span class="text-warning">★★★★★</span></td>
+                                     <td class="small">Teething seems better; settled within 5 mins.</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Mar 20, 2026</td>
+                                     <td>7:30 PM</td>
+                                     <td>6:15 AM</td>
+                                     <td class="fw-bold text-dark">10.7h</td>
+                                     <td><span class="text-warning">★★★★☆</span></td>
+                                     <td class="small">One wake at 3 AM; needed 10 mins of patting.</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Mar 19, 2026</td>
+                                     <td>7:00 PM</td>
+                                     <td>7:00 AM</td>
+                                     <td class="fw-bold text-dark">12.0h</td>
+                                     <td><span class="text-warning">★★★★★</span></td>
+                                     <td class="small">Best night yet! 12 hours straight.</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Mar 18, 2026</td>
+                                     <td>7:20 PM</td>
+                                     <td>6:30 AM</td>
+                                     <td class="fw-bold text-dark">11.1h</td>
+                                     <td><span class="text-warning">★★★★☆</span></td>
+                                     <td class="small">Slightly fussy at bedtime; rain sounds helped.</td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button class="btn btn-link text-decoration-none text-gray small">Load More History <i class="bi bi-chevron-down ms-1"></i></button>
+                </div>
+
+                <!-- Monthly Insights -->
+                <div class="row g-4 mt-4">
+                     <div class="col-lg-6">
+                          <div class="stats-card h-100 border-0 shadow-sm" style="background: rgba(108, 155, 207, 0.05);">
+                               <h6 class="fw-bold mb-3"><i class="bi bi-lightbulb-fill text-warning me-2"></i>Smart Insight</h6>
+                               <p class="small text-gray mb-0">Based on your logs, bedtimes between <strong>7:00 PM - 7:20 PM</strong> have resulted in 15% longer initial sleep stretches this week. Consistency is paying off!</p>
+                          </div>
+                     </div>
+                     <div class="col-lg-6">
+                          <div class="stats-card h-100 border-0 shadow-sm" style="background: rgba(200, 182, 226, 0.05);">
+                               <h6 class="fw-bold mb-3"><i class="bi bi-calendar-check-fill text-tertiary me-2"></i>Milestone Alert</h6>
+                               <p class="small text-gray mb-0">Sarah is approaching her 6-month milestone. You might see a temporary change in nap patterns. We've updated your <strong>Sleep Plan</strong> with a transition guide.</p>
+                          </div>
+                     </div>
+                </div>
+            </section>
+            
+            <!-- Sleep Plans Section -->
+            <section id="plans" class="dashboard-section animate-on-scroll">
+                <h2 class="h3 fw-bold mb-5">Personalized Sleep Plan</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="stats-card border-0">
+                            <h5 class="fw-bold mb-3">Bedtime Routine</h5>
+                            <ul class="list-unstyled text-gray">
+                                <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> 6:30 PM - Bath time (Warm & Calm)</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> 6:45 PM - Pajamas & Low-light play</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> 7:00 PM - Nursing/Bottle & Story</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> 7:15 PM - In crib (Drowsy but awake)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                         <div class="stats-card border-0">
+                            <h5 class="fw-bold mb-3">Self-Settling Goals</h5>
+                            <p class="small text-gray mb-4">Focus on the 'Touch-and-Wait' method for the next 7 days.</p>
+                            <label class="small text-gray d-block mb-2">Phase 2 Completion</label>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar rounded-pill" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Deep Dive (Previously hidden by duplicate ID) -->
+                <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4 bg-white mt-5">
+                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 mb-md-5 gap-3">
+                          <div>
+                               <div class="small text-primary fw-bold mb-2">CURRENT PHASE</div>
+                               <h3 class="mb-0 h4 h3-md">Phase 2: Nighttime Consolidation</h3>
+                          </div>
+                          <button class="btn btn-outline-primary rounded-pill btn-sm px-4 py-2" style="width: fit-content;"><i class="bi bi-download me-2"></i> Download PDF</button>
+                     </div>
+
+                     <div class="row g-5">
+                         <div class="col-lg-7">
+                             <h5 class="fw-bold mb-4">Core Strategies</h5>
+                             <div class="mb-4">
+                                 <div class="fw-bold mb-2">1. Bedtime Association</div>
+                                 <p class="text-gray">Focus on the lavender bath and the same board book every night. This triggers the melatonin release Leo needs to drift off deeply.</p>
+                             </div>
+                             <div class="mb-4">
+                                 <div class="fw-bold mb-2">2. The 5-Minute Pause</div>
+                                 <p class="text-gray">When he stirs at 10 PM, wait exactly 5 minutes before entering the room. He is likely just transitioning sleep cycles.</p>
+                             </div>
+                         </div>
+                         <div class="col-lg-5">
+                             <div class="bg-light p-4 rounded-4 text-center">
+                                 <i class="bi bi-book fs-1 text-primary opacity-50 mb-3"></i>
+                                 <h6>Complete Guide</h6>
+                                 <p class="small text-gray">Access your full 32-page sleep manual anytime.</p>
+                                 <button class="btn btn-primary w-100 rounded-pill">Open Library</button>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messages" class="dashboard-section animate-on-scroll">
+                <h2 class="h3 fw-bold mb-5">Chat with Emma Wilson</h2>
+                <div class="card p-0 border-0 shadow-lg rounded-5 bg-white overflow-hidden d-flex flex-column" style="height: 600px;">
+                     <div class="chat-header p-4 border-bottom bg-light d-flex align-items-center gap-3">
+                         <img src="assets/images/about_consultant.png" alt="Emma" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                         <div>
+                             <div class="fw-bold">Emma Wilson</div>
+                             <div class="small text-success"><i class="bi bi-dot"></i> Online</div>
+                         </div>
+                     </div>
+                     <div class="chat-body p-4 flex-grow-1 overflow-auto d-flex flex-column bg-light-subtle">
+                         <div class="chat-bubble received">
+                             Hello Sarah! How did last night go with Leo? Did you try the shorter wake window?
+                             <div class="small mt-1 opacity-50">08:30 AM</div>
+                         </div>
+                         <div class="chat-bubble sent">
+                             Hi Emma! Yes, we did! He fell asleep much faster, but woke up at 3 AM again.
+                             <div class="small mt-1 opacity-50">09:15 AM</div>
+                         </div>
+                          <div class="chat-bubble received">
+                             That's a good step! For the 3 AM wake, let's try the "Reassurance Rub" technique tonight.
+                             <div class="small mt-1 opacity-50">09:18 AM</div>
+                         </div>
+                     </div>
+                     <div class="chat-footer p-4 border-top">
+                          <form class="d-flex gap-2">
+                             <input type="text" class="form-control rounded-pill border-0 bg-light p-3" placeholder="Type your message...">
+                             <button class="btn btn-primary rounded-circle p-0" style="width: 54px; height: 54px;"><i class="bi bi-send-fill"></i></button>
+                          </form>
+                     </div>
+                </div>
+            </section>             </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
