@@ -339,6 +339,11 @@
     background-color: var(--tertiary-color) !important;
 }
 
+.bg-primary-subtle { background-color: rgba(108, 155, 207, 0.15) !important; }
+.bg-tertiary-subtle { background-color: rgba(200, 182, 226, 0.15) !important; }
+.bg-success-subtle { background-color: rgba(85, 239, 161, 0.15) !important; }
+.bg-warning-subtle { background-color: rgba(255, 193, 7, 0.15) !important; }
+
 .btn-primary {
     background-color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
@@ -1612,87 +1617,111 @@ footer {
     }
 }
 
-/* Center website name and logo in login and register cards */
+/* Center website name and logo in login and register cards - Display on single line */
 body.bg-light .card .text-center .navbar-brand {
-    display: flex !important;
-    flex-direction: column !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
-    text-align: center !important;
+    gap: 8px !important;
     margin: 0 auto !important;
 }
 
 body.bg-light .card .text-center .navbar-brand i {
-    margin-bottom: 5px !important;
-    display: block !important;
+    margin-bottom: 0 !important;
+    display: inline-block !important;
 }
 
 body.bg-light .card .text-center .navbar-brand span {
     text-align: center !important;
-    display: block !important;
+    display: inline-block !important;
 }
 
-/* Force centering for login and register pages */
-.login-page .navbar-brand,
-.register-page .navbar-brand {
-    text-align: center !important;
-    display: block !important;
-    margin: 0 auto 15px auto !important;
+/* Fix logo and website name alignment in mobile and tablet views for login and register pages - Single line display */
+@media (max-width: 767px) {
+    .auth-page .navbar-brand {
+        display: inline-flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        margin: 0 auto !important;
+    }
+    
+    .auth-page .navbar-brand i {
+        font-size: 2rem !important;
+        margin-bottom: 0 !important;
+        display: inline-block !important;
+    }
+    
+    .auth-page .navbar-brand span {
+        font-size: 1.5rem !important;
+        line-height: 1.2 !important;
+        display: inline-block !important;
+    }
 }
 
-.login-page .navbar-brand i,
-.register-page .navbar-brand i {
-    display: block !important;
-    text-align: center !important;
-    margin-bottom: 5px !important;
+@media (min-width: 768px) and (max-width: 991px) {
+    .auth-page .navbar-brand {
+        display: inline-flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin: 0 auto !important;
+    }
+    
+    .auth-page .navbar-brand i {
+        font-size: 2.5rem !important;
+        margin-bottom: 0 !important;
+        display: inline-block !important;
+    }
+    
+    .auth-page .navbar-brand span {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+        display: inline-block !important;
+    }
 }
 
 .login-page .navbar-brand span,
 .register-page .navbar-brand span {
-    display: block !important;
-    text-align: center !important;
+    display: inline-block !important;
 }
 
-/* Specific centering for register page navbar-brand */
+/* Specific centering for register page navbar-brand - Single line display */
 body.bg-light .card .text-center .navbar-brand.fs-2 {
-    display: flex !important;
-    flex-direction: column !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
-    text-align: center !important;
-    margin: 0 auto 15px auto !important;
-    width: fit-content !important;
+    gap: 8px !important;
+    margin: 0 auto !important;
 }
 
 body.bg-light .card .text-center .navbar-brand.fs-2 i,
 body.bg-light .card .text-center .navbar-brand.fs-2 span {
-    display: block !important;
-    text-align: center !important;
+    display: inline-block !important;
 }
 
-/* Force center Lullaby Lark logo and text */
+/* Force center Lullaby Lark logo and text - Single line display */
 body.bg-light .card .text-center a.navbar-brand {
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
-    margin: 0 auto 15px auto !important;
-    position: relative !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    gap: 8px !important;
+    margin: 0 auto !important;
 }
 
 body.bg-light .card .text-center a.navbar-brand i {
-    display: block !important;
-    text-align: center !important;
-    margin: 0 auto 5px auto !important;
+    display: inline-block !important;
+    margin: 0 !important;
 }
 
 body.bg-light .card .text-center a.navbar-brand span {
-    display: block !important;
-    text-align: center !important;
-    margin: 0 auto !important;
+    display: inline-block !important;
+    margin: 0 !important;
 }
 
 /* Fix link hover color in login and register pages */
@@ -1725,6 +1754,22 @@ body.bg-light .card .form-check-label a:hover {
 body.bg-light .card .text-center a:not(.navbar-brand):not(.btn):hover {
     color: var(--primary-color) !important;
     text-decoration: underline !important;
+}
+
+/* Fix hero section button alignment on tablet view */
+@media (max-width: 991.98px) and (min-width: 768px) {
+    .hero .d-flex.flex-column.flex-sm-row.gap-3.justify-content-center.justify-content-lg-start {
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 0.5rem !important;
+    }
+    
+    .hero .d-flex.flex-column.flex-sm-row.gap-3.justify-content-center.justify-content-lg-start .btn {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 0 auto !important;
+    }
 }
 
 /* Hide consultant card on mobile in About page */
