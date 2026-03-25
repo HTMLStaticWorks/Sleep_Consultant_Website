@@ -360,6 +360,20 @@
     color: white !important;
 }
 
+/* Footer Brand - Center on Tablet & Mobile */
+@media (max-width: 991.98px) {
+    footer .col-lg-4:first-child {
+        text-align: center;
+    }
+    footer .col-lg-4:first-child .navbar-brand {
+        display: inline-flex !important;
+        justify-content: center;
+    }
+    footer .col-lg-4:first-child .social-links {
+        justify-content: center !important;
+    }
+}
+
 /* Footer Links */
 .footer-link {
     color: var(--gray-color) !important;
@@ -3761,4 +3775,63 @@ body.auth-page .auth-card .remember-forgot-row {
     font-size: 1rem;
     line-height: 1;
     color: inherit !important;
+}
+
+/* Blog Read More Link Hover Effect */
+.read-more-link {
+    color: var(--primary-color) !important;
+    transition: var(--transition);
+}
+
+.read-more-link i {
+    transition: transform 0.3s ease;
+}
+
+.read-more-link:hover {
+    color: var(--tertiary-color) !important;
+}
+
+.read-more-link:hover i {
+    transform: translateX(4px);
+}
+
+[data-theme="dark"] .read-more-link {
+    color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .read-more-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Ensure Read More stays on one line in desktop view */
+@media (min-width: 992px) {
+    .read-more-link {
+        white-space: nowrap;
+    }
+}
+
+/* Pricing Comparison Table: Fix mobile alignment & mobile layout */
+@media (max-width: 991px) {
+    .comparison-grid {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .comparison-row {
+        min-width: 650px;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        padding: 15px 20px;
+    }
+    .comparison-header {
+        position: sticky; /* Keep headers at top if they scroll? No, it's horizontal */
+        top: 0;
+    }
+    .comparison-row div {
+        font-size: 0.85rem;
+    }
+    .comparison-row .fs-5 {
+        font-size: 1rem !important;
+    }
 }
