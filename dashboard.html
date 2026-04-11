@@ -267,13 +267,32 @@
             transition: var(--transition);
         }
 
+        #rtl-toggle {
+            background: var(--tertiary-color);
+            color: white;
+            border: none;
+            transition: var(--transition);
+        }
+
         [data-theme="dark"] #theme-toggle {
             background: rgba(255, 255, 255, 0.1) !important;
             color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        [data-theme="dark"] #rtl-toggle {
+            background: var(--tertiary-color) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
         }
 
         #theme-toggle:hover {
             background: var(--primary-color) !important;
+            color: white !important;
+        }
+
+        #rtl-toggle:hover {
+            background: #b8a6d2 !important;
             color: white !important;
         }
 
@@ -324,8 +343,10 @@
                         style="width: 40px; height: 40px; cursor: pointer;">
                         <i class="bi bi-moon"></i>
                     </div>
-                    <div class="bg-primary text-white p-2 rounded-circle"
-                        style="width: 40px; height: 40px; text-align: center; line-height: 24px; cursor: pointer;">S
+                    <div id="rtl-toggle"
+                        class="btn btn-light rounded-circle p-0 d-flex align-items-center justify-content-center"
+                        style="width: 40px; height: 40px; cursor: pointer;">
+                        <i class="bi bi-arrow-left-right"></i>
                     </div>
                 </div>
             </div>

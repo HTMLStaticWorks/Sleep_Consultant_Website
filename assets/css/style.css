@@ -6,6 +6,14 @@
   - Tertiary: Calm Lavender (#C8B6E2)
 */
 
+.text-tertiary {
+    color: var(--tertiary-text-light) !important;
+}
+
+.bg-tertiary-subtle {
+    background-color: var(--tertiary-bg-light) !important;
+}
+
 :root {
     --primary-color: #6C9BCF;
     --secondary-color: #F8F4EF;
@@ -23,6 +31,10 @@
 
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Inter', sans-serif;
+
+    /* Light theme badge visibility fixes */
+    --tertiary-text-light: #8E7AB5;
+    --tertiary-bg-light: rgba(200, 182, 226, 0.2);
 
     --spacing-xs: 4px;
     --spacing-sm: 8px;
@@ -1323,6 +1335,12 @@ footer {
     text-align: center;
     transition: var(--transition);
     min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.package-card .btn {
+    margin-top: auto;
 }
 
 .package-card:hover {
@@ -1370,9 +1388,14 @@ footer {
 
 .reassurance-bg {
     background: linear-gradient(var(--secondary-color), var(--surface-color));
-    border-radius: 100px;
-    margin: 100px 0;
-    padding: 100px 0;
+    border-radius: 60px;
+    margin: 80px 0;
+    padding: 80px 0;
+}
+
+[data-theme="dark"] .reassurance-bg {
+    background: #1C1C1E !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .quiz-cta {
@@ -1438,6 +1461,14 @@ footer {
     padding: 50px 30px;
     text-align: center;
     border-right: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.compare-col .btn {
+    margin-top: auto;
+    width: fit-content;
+    align-self: center;
 }
 
 .compare-col:last-child {
@@ -1445,7 +1476,15 @@ footer {
 }
 
 .compare-col.popular {
+    position: relative;
     background: rgba(108, 155, 207, 0.05);
+}
+
+.compare-col.popular > .badge {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .essential-card {
@@ -3010,7 +3049,7 @@ section {
     font-size: 1.1rem !important;
 }
 
-/* Main navigation items - no button styling, only underline hover */
+/* Main navigation items - no button styling, highlight only active state */
 .navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]) {
     background: transparent;
     border: none;
@@ -3019,7 +3058,7 @@ section {
     transition: all 0.3s ease;
     font-weight: 500;
     gap: 6px;
-    text-decoration: none;
+    text-decoration: none !important;
     position: relative;
 }
 
@@ -3027,30 +3066,18 @@ section {
     color: #ffffff !important;
 }
 
-.navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]):hover,
 .navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]).active {
     background: transparent;
     color: var(--primary-color) !important;
     border: none;
     transform: none;
     box-shadow: none;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
-.navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"])::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-.navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]):hover::after,
-.navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]).active::after {
-    width: 100%;
+.navbar-nav .nav-link:not([id="rtl-toggle"]):not([id="theme-toggle"]):not([href="dashboard.html"]):not([href="login.html"]):not([href="register.html"]):hover {
+    color: var(--primary-color);
+    opacity: 0.8;
 }
 
 /* Button styling for RTL, Theme, Dashboard, Login, Sign Up only */
@@ -3103,19 +3130,21 @@ section {
 }
 
 /* RTL toggle specific styling */
-.navbar-nav .nav-link[id="rtl-toggle"] {
-    background: var(--tertiary-color);
-    color: white;
-    border-color: var(--tertiary-color);
+#rtl-toggle {
+    background: var(--tertiary-color) !important;
+    color: white !important;
+    border-color: var(--tertiary-color) !important;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
 }
 
-.navbar-nav .nav-link[id="rtl-toggle"]:hover {
-    background: #b8a6d2;
-    border-color: #b8a6d2;
+#rtl-toggle:hover {
+    background: #b8a6d2 !important;
+    border-color: #b8a6d2 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(200, 182, 226, 0.3);
 }
 
 /* Theme toggle specific styling */
@@ -3144,6 +3173,14 @@ section {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
+}
+
+/* Dark Mode specific outlines for toggles */
+[data-theme="dark"] #rtl-toggle,
+[data-theme="dark"] .navbar-nav .nav-link[id="theme-toggle"],
+[data-theme="dark"] .navbar-nav .nav-link[href="dashboard.html"],
+[data-theme="dark"] .icon-btn#theme-toggle {
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
 /* Fix hamburger menu icon in dark mode for all pages */
@@ -3834,4 +3871,29 @@ body.auth-page .auth-card .remember-forgot-row {
     .comparison-row .fs-5 {
         font-size: 1rem !important;
     }
+}
+
+/* Global Badge Visibility Fixes */
+.bg-primary-subtle.text-primary,
+.bg-primary-subtle .text-primary {
+    color: #5B8ABF !important;
+    background-color: rgba(108, 155, 207, 0.2) !important;
+}
+
+.bg-tertiary-subtle.text-tertiary,
+.bg-tertiary-subtle .text-tertiary {
+    color: #8E7AB5 !important;
+    background-color: rgba(142, 122, 181, 0.2) !important;
+}
+
+[data-theme="dark"] .bg-primary-subtle.text-primary,
+[data-theme="dark"] .bg-primary-subtle .text-primary {
+    color: #FFFFFF !important;
+    background-color: rgba(108, 155, 207, 0.45) !important;
+}
+
+[data-theme="dark"] .bg-tertiary-subtle.text-tertiary,
+[data-theme="dark"] .bg-tertiary-subtle .text-tertiary {
+    color: #FFFFFF !important;
+    background-color: rgba(142, 122, 181, 0.45) !important;
 }

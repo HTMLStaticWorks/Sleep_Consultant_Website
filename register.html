@@ -18,9 +18,14 @@
 </head>
 <body class="bg-light auth-page">
 
-    <!-- Theme Toggle (Fixed Top Right) -->
-    <div id="theme-toggle" class="icon-btn position-fixed top-0 end-0 m-3 m-md-4 z-3 bg-white shadow-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; cursor: pointer;">
-        <i class="bi bi-moon"></i>
+    <!-- Theme & RTL Toggles (Fixed Top Right) -->
+    <div class="position-fixed top-0 end-0 m-3 m-md-4 z-3 d-flex gap-2">
+        <div id="rtl-toggle" class="icon-btn shadow-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; cursor: pointer;">
+            <i class="bi bi-arrow-left-right"></i>
+        </div>
+        <div id="theme-toggle" class="icon-btn bg-white shadow-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; cursor: pointer;">
+            <i class="bi bi-moon"></i>
+        </div>
     </div>
 
     <div class="container px-3 px-md-4 py-5 py-md-8 min-vh-100 d-flex flex-column align-items-center justify-content-center">
@@ -36,7 +41,7 @@
             </div>
             <div class="social-login d-grid d-sm-flex gap-2 mb-4">
                 <button class="btn btn-outline-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2 py-2 py-md-3 small"><i class="bi bi-google"></i> Google</button>
-                <button class="btn btn-outline-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2 py-2 py-md-3 small"><i class="bi bi-facebook"></i> Facebook</button>
+                <button class="btn btn-outline-secondary w-100 rounded-pill d-flex align-items-center justify-content-center gap-2 py-2 py-md-3 small"><i class="bi bi-apple"></i> Apple</button>
             </div>
 
             <div class="divider d-flex align-items-center gap-3 mb-4 opacity-25">
@@ -46,15 +51,13 @@
             </div>
 
             <form action="dashboard.html" class="needs-validation" novalidate>
-                 <div class="row g-3 g-md-4 mb-3 mb-md-4">
-                     <div class="col-sm-6">
-                         <label class="form-label fw-bold small">First Name</label>
-                         <input type="text" class="form-control rounded-pill p-3 px-4 bg-light border-0 shadow-none" placeholder="First Name" required>
-                     </div>
-                     <div class="col-sm-6">
-                         <label class="form-label fw-bold small">Last Name</label>
-                         <input type="text" class="form-control rounded-pill p-3 px-4 bg-light border-0 shadow-none" placeholder="Last Name" required>
-                     </div>
+                 <div class="mb-3 mb-md-4">
+                     <label class="form-label fw-bold small">First Name</label>
+                     <input type="text" class="form-control rounded-pill p-3 px-4 bg-light border-0 shadow-none" placeholder="First Name" required>
+                 </div>
+                 <div class="mb-3 mb-md-4">
+                     <label class="form-label fw-bold small">Last Name</label>
+                     <input type="text" class="form-control rounded-pill p-3 px-4 bg-light border-0 shadow-none" placeholder="Last Name" required>
                  </div>
                  <div class="mb-3 mb-md-4">
                      <label class="form-label fw-bold small">Email Address</label>
@@ -62,7 +65,12 @@
                  </div>
                  <div class="mb-3 mb-md-4">
                      <label class="form-label fw-bold small">Create Password</label>
-                     <input type="password" class="form-control rounded-pill p-3 px-4 bg-light border-0 shadow-none" placeholder="••••••••" required>
+                     <div class="position-relative">
+                         <input type="password" class="form-control rounded-pill p-3 px-4 bg-light border-0 shadow-none" placeholder="••••••••" required>
+                         <button type="button" class="btn position-absolute top-50 end-0 translate-middle-y border-0 bg-transparent pe-4 toggle-password" aria-label="Toggle password visibility">
+                             <i class="bi bi-eye text-gray"></i>
+                         </button>
+                     </div>
                  </div>
                  <div class="mb-4 mb-md-5">
                       <div class="form-check">
