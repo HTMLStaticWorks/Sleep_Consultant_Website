@@ -2518,6 +2518,10 @@ section {
         padding-bottom: 5rem !important;
     }
 
+    .page-hero + section.py-5 {
+        padding-top: 0 !important;
+    }
+
     .split-content {
         flex-direction: column;
         height: auto;
